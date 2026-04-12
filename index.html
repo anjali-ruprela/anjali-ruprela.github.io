@@ -1,0 +1,2827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Gurmukh Park — A premium plotted residential development by Jai Baba Builders in Kumhari, near Kaivalya Dham, Raipur. Freehold plots on NH-53 corridor." />
+  <title>Gurmukh Park — Jai Baba Builders | Kumhari, Raipur</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <style>
+    /* =====================================================
+       DESIGN TOKENS
+    ===================================================== */
+    :root {
+      --color-navy:        #1A2744;
+      --color-gold:        #C9A84C;
+      --color-cream:       #F5F0E8;
+      --color-terracotta:  #C4622D;
+      --color-sage:        #6B7F5E;
+      --color-white:       #FAFAF8;
+      --color-text:        #2C2C2C;
+      --color-text-light:  #6B6B6B;
+
+      --font-display: 'Playfair Display', serif;
+      --font-sub:     'Cormorant Garamond', serif;
+      --font-body:    'DM Sans', sans-serif;
+      --font-mono:    'DM Mono', monospace;
+
+      --shadow-card: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-hover: 0 12px 40px rgba(0,0,0,0.14);
+      --radius: 12px;
+      --transition: 0.3s ease;
+    }
+
+    /* =====================================================
+       RESET & BASE
+    ===================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      background: var(--color-cream);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* =====================================================
+       REDUCED MOTION
+    ===================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* =====================================================
+       UTILITY
+    ===================================================== */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .gold-rule {
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: var(--color-gold);
+      margin: 16px auto 0;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--color-navy);
+      color: var(--color-gold);
+      border-color: var(--color-navy);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-gold);
+      color: var(--color-navy);
+      border-color: var(--color-gold);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(201,168,76,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-white);
+      border-color: rgba(250,250,248,0.7);
+    }
+
+    .btn-outline:hover {
+      background: var(--color-gold);
+      color: var(--color-navy);
+      border-color: var(--color-gold);
+      transform: translateY(-2px);
+    }
+
+    .btn-gold {
+      background: var(--color-gold);
+      color: var(--color-navy);
+      border-color: var(--color-gold);
+      font-weight: 600;
+    }
+
+    .btn-gold:hover {
+      background: var(--color-navy);
+      color: var(--color-gold);
+      border-color: var(--color-navy);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(26,39,68,0.3);
+    }
+
+    /* =====================================================
+       REVEAL ANIMATIONS
+    ===================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
+    .stagger-5 { transition-delay: 0.5s; }
+    .stagger-6 { transition-delay: 0.6s; }
+
+    /* =====================================================
+       NAVIGATION
+    ===================================================== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      transition: background var(--transition), padding var(--transition), box-shadow var(--transition);
+    }
+
+    .nav.scrolled {
+      background: var(--color-white);
+      padding: 12px 0;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.1);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-white);
+      transition: color var(--transition);
+      line-height: 1.2;
+    }
+
+    .nav-logo span {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 400;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    .nav.scrolled .nav-logo {
+      color: var(--color-navy);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: rgba(250,250,248,0.9);
+      transition: color var(--transition);
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-gold);
+      transition: width var(--transition);
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav.scrolled .nav-links a {
+      color: var(--color-navy);
+    }
+
+    .nav-links a.active {
+      color: var(--color-gold);
+    }
+
+    .nav.scrolled .nav-links a.active {
+      color: var(--color-gold);
+    }
+
+    .nav-cta {
+      font-size: 0.82rem !important;
+      padding: 10px 20px !important;
+    }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      z-index: 1100;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--color-white);
+      transition: transform var(--transition), opacity var(--transition), background var(--transition);
+      transform-origin: center;
+    }
+
+    .nav.scrolled .nav-hamburger span {
+      background: var(--color-navy);
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile overlay */
+    .nav-mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--color-navy);
+      z-index: 1050;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .nav-mobile-overlay.open {
+      display: flex;
+    }
+
+    .nav-mobile-overlay a {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--color-white);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: color var(--transition);
+    }
+
+    .nav-mobile-overlay a:hover {
+      color: var(--color-gold);
+    }
+
+    .nav-mobile-overlay a.mobile-animate {
+      animation: mobileNavIn 0.4s ease forwards;
+    }
+
+    @keyframes mobileNavIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =====================================================
+       SECTION 1 — HERO
+    ===================================================== */
+    #home {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1920&q=90&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(26,39,68,0.88) 0%, rgba(26,39,68,0.42) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      padding: 0 24px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1.12;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .hero-title .word {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .hero-title .char {
+      display: inline-block;
+    }
+
+    .hero-sub {
+      font-family: var(--font-sub);
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: rgba(245,240,232,0.88);
+      font-style: italic;
+      margin-bottom: 40px;
+      line-height: 1.5;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: var(--color-gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .scroll-indicator span {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.8);
+    }
+
+    .scroll-indicator svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-bg { background-attachment: scroll; }
+    }
+
+    /* =====================================================
+       SECTION 2 — STORY
+    ===================================================== */
+    #story {
+      background: var(--color-cream);
+      padding: 120px 0;
+      position: relative;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Dot grid texture */
+    #story::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(26,39,68,0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .story-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    .story-heading {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .story-heading h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700;
+      color: var(--color-navy);
+      line-height: 1.15;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+      margin-bottom: 80px;
+    }
+
+    .story-pull-quote {
+      position: sticky;
+      top: 120px;
+    }
+
+    .story-pull-quote blockquote {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 600;
+      color: var(--color-navy);
+      line-height: 1.4;
+      font-style: italic;
+      border-left: 4px solid var(--color-gold);
+      padding-left: 28px;
+      margin-bottom: 20px;
+    }
+
+    .story-pull-quote cite {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: var(--color-gold);
+      font-style: normal;
+      display: block;
+      padding-left: 28px;
+    }
+
+    .story-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--color-text);
+      margin-bottom: 24px;
+    }
+
+    .story-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--color-gold);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .stat-item {
+      background: var(--color-navy);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-mono);
+      font-size: clamp(2.4rem, 4vw, 3.5rem);
+      font-weight: 500;
+      color: var(--color-gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: rgba(245,240,232,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* =====================================================
+       SECTION 3 — LOCATION
+    ===================================================== */
+    #location {
+      background: var(--color-white);
+      padding: 120px 0;
+      min-height: 80vh;
+    }
+
+    .location-hero-img {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      margin-bottom: 80px;
+    }
+
+    .location-hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .location-heading-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(26,39,68,0.82) 0%, rgba(26,39,68,0.3) 100%);
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+    }
+
+    .location-heading-overlay h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--color-white);
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 500px;
+    }
+
+    .location-body {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 64px;
+    }
+
+    .location-body p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--color-text);
+    }
+
+    .proximity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    .proximity-card {
+      background: var(--color-white);
+      border: 1px solid rgba(26,39,68,0.08);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition), box-shadow var(--transition), border-top var(--transition);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .proximity-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--color-gold);
+      transform: scaleX(0);
+      transition: transform var(--transition);
+      transform-origin: left;
+    }
+
+    .proximity-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .proximity-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .proximity-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .proximity-name {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      margin-bottom: 6px;
+    }
+
+    .proximity-dist {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--color-gold);
+      font-weight: 500;
+    }
+
+    .location-closing {
+      text-align: center;
+      font-family: var(--font-sub);
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      font-style: italic;
+      color: var(--color-navy);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* =====================================================
+       SECTION 4 — PROJECT
+    ===================================================== */
+    #project {
+      background: var(--color-cream);
+      padding: 120px 0 0;
+      min-height: 80vh;
+      position: relative;
+    }
+
+    #project::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(26,39,68,0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .project-header {
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .project-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 700;
+      color: var(--color-navy);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .project-intro {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 64px;
+      position: relative;
+    }
+
+    .project-intro p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--color-text);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    .feature-card {
+      background: var(--color-white);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition), box-shadow var(--transition), border-top var(--transition);
+      cursor: default;
+      border-top: 3px solid transparent;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-top: 3px solid var(--color-gold);
+    }
+
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+    }
+
+    .feature-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      margin-bottom: 12px;
+    }
+
+    .feature-desc {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--color-text-light);
+    }
+
+    /* Marquee */
+    .marquee-strip {
+      background: var(--color-navy);
+      padding: 18px 0;
+      overflow: hidden;
+      margin-top: 72px;
+    }
+
+    .marquee-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 28s linear infinite;
+    }
+
+    .marquee-track span {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      color: var(--color-gold);
+      padding: 0 32px;
+      text-transform: uppercase;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* =====================================================
+       SECTION 5 — PLOT SIZES
+    ===================================================== */
+    #plots {
+      background: var(--color-white);
+      padding: 120px 0;
+      min-height: 80vh;
+    }
+
+    .plots-header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .plots-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 700;
+      color: var(--color-navy);
+      margin-bottom: 12px;
+    }
+
+    .plots-header p {
+      font-family: var(--font-sub);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--color-text-light);
+      max-width: 560px;
+      margin: 0 auto 48px;
+    }
+
+    .tab-labels {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 48px;
+      border-bottom: 2px solid rgba(26,39,68,0.1);
+    }
+
+    .tab-label {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--color-text-light);
+      padding: 14px 36px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: color var(--transition), border-color var(--transition);
+      letter-spacing: 0.03em;
+    }
+
+    .tab-label:hover {
+      color: var(--color-navy);
+    }
+
+    .tab-label.active {
+      color: var(--color-gold);
+      border-bottom-color: var(--color-gold);
+      font-weight: 600;
+    }
+
+    .tab-content {
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .tab-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .plot-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    /* CSS Plot Outline */
+    .plot-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .plot-box-wrap {
+      position: relative;
+      padding: 20px;
+    }
+
+    .plot-box {
+      background: rgba(26,39,68,0.04);
+      border: 2px solid var(--color-navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--color-navy);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      position: relative;
+    }
+
+    .plot-box.compact {
+      width: 160px;
+      height: 120px;
+      border-color: var(--color-sage);
+    }
+
+    .plot-box.standard {
+      width: 220px;
+      height: 160px;
+      border-color: var(--color-navy);
+    }
+
+    .plot-box.premium {
+      width: 280px;
+      height: 200px;
+      border: 3px solid var(--color-gold);
+    }
+
+    .plot-dim-h {
+      position: absolute;
+      bottom: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--color-text-light);
+      white-space: nowrap;
+    }
+
+    .plot-dim-v {
+      position: absolute;
+      right: -40px;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--color-text-light);
+      white-space: nowrap;
+    }
+
+    .plot-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      margin-bottom: 8px;
+    }
+
+    .plot-range {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: var(--color-gold);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .plot-info p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-text);
+      margin-bottom: 24px;
+    }
+
+    .plot-highlights {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+
+    .plot-highlights li {
+      font-size: 0.9rem;
+      color: var(--color-text);
+      padding: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .plot-highlights li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-gold);
+      flex-shrink: 0;
+    }
+
+    /* =====================================================
+       SECTION 6 — GALLERY
+    ===================================================== */
+    #gallery {
+      background: var(--color-cream);
+      padding: 120px 0;
+      min-height: 80vh;
+      position: relative;
+    }
+
+    #gallery::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(26,39,68,0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .gallery-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 700;
+      color: var(--color-navy);
+      margin-bottom: 12px;
+    }
+
+    .gallery-header p {
+      font-family: var(--font-sub);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--color-text-light);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      position: relative;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(201,168,76,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      background: rgba(201,168,76,0.55);
+    }
+
+    .gallery-view-icon {
+      color: var(--color-white);
+      font-size: 1.4rem;
+      font-family: var(--font-body);
+      font-weight: 500;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-view-icon {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .gallery-caption {
+      text-align: center;
+      margin-top: 32px;
+      font-family: var(--font-sub);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--color-text-light);
+      position: relative;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.93);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-img-wrap {
+      position: relative;
+      max-width: 90vw;
+      max-height: 85vh;
+    }
+
+    .lightbox-img-wrap img {
+      max-width: 90vw;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -44px;
+      right: 0;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+      opacity: 0.8;
+      transition: opacity var(--transition);
+    }
+
+    .lightbox-close:hover {
+      opacity: 1;
+    }
+
+    .lightbox-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition);
+    }
+
+    .lightbox-btn:hover {
+      background: rgba(201,168,76,0.6);
+    }
+
+    .lightbox-prev { left: -64px; }
+    .lightbox-next { right: -64px; }
+
+    /* =====================================================
+       SECTION 7 — WHY NOW
+    ===================================================== */
+    #whynow {
+      background: var(--color-navy);
+      padding: 120px 0;
+      min-height: 80vh;
+    }
+
+    .whynow-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .whynow-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 700;
+      color: var(--color-cream);
+      line-height: 1.2;
+      max-width: 700px;
+      margin: 0 auto 16px;
+    }
+
+    .whynow-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    .whynow-card {
+      background: rgba(250,250,248,0.04);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    }
+
+    .whynow-card:hover {
+      background: rgba(250,250,248,0.07);
+      border-color: rgba(201,168,76,0.5);
+      transform: translateY(-4px);
+    }
+
+    .whynow-card-num {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--color-gold);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .whynow-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--color-cream);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+
+    .whynow-card p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: rgba(245,240,232,0.72);
+    }
+
+    .availability-block {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .availability-label {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.7);
+      margin-bottom: 12px;
+    }
+
+    .availability-count {
+      font-family: var(--font-mono);
+      font-size: clamp(4rem, 10vw, 7rem);
+      font-weight: 500;
+      color: var(--color-gold);
+      line-height: 1;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .availability-sub {
+      font-family: var(--font-sub);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: rgba(245,240,232,0.6);
+    }
+
+    .whynow-cta {
+      text-align: center;
+    }
+
+    /* =====================================================
+       SECTION 8 — CONTACT
+    ===================================================== */
+    #contact {
+      background: var(--color-cream);
+      padding: 120px 0;
+      position: relative;
+    }
+
+    #contact::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(26,39,68,0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 64px;
+      position: relative;
+    }
+
+    .contact-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700;
+      color: var(--color-navy);
+      margin-bottom: 12px;
+    }
+
+    .contact-header p {
+      font-size: 1rem;
+      color: var(--color-text-light);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 64px;
+      align-items: start;
+      position: relative;
+    }
+
+    .contact-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      margin-bottom: 6px;
+    }
+
+    .contact-info .project-name {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 20px;
+    }
+
+    .contact-info address {
+      font-style: normal;
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--color-text);
+      margin-bottom: 28px;
+    }
+
+    .contact-details {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+
+    .contact-details li {
+      font-size: 0.95rem;
+      color: var(--color-text);
+      padding: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contact-details .icon {
+      font-size: 1.1rem;
+      width: 24px;
+      flex-shrink: 0;
+    }
+
+    .contact-map {
+      width: 100%;
+      height: 280px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: none;
+      margin-top: 8px;
+      box-shadow: var(--shadow-card);
+    }
+
+    /* Form */
+    .contact-form {
+      background: var(--color-white);
+      border-radius: var(--radius);
+      padding: 48px 40px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .form-row {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--color-navy);
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .form-label .req {
+      color: var(--color-terracotta);
+      margin-left: 2px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--color-text);
+      background: var(--color-cream);
+      border: 1.5px solid rgba(26,39,68,0.12);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      appearance: none;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+    }
+
+    .form-input.error,
+    .form-select.error,
+    .form-textarea.error {
+      border-color: var(--color-terracotta);
+      box-shadow: 0 0 0 3px rgba(196,98,45,0.1);
+    }
+
+    .form-error-msg {
+      display: none;
+      font-size: 0.78rem;
+      color: var(--color-terracotta);
+      margin-top: 5px;
+    }
+
+    .form-error-msg.show {
+      display: block;
+    }
+
+    .form-textarea {
+      height: 100px;
+      resize: vertical;
+    }
+
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231A2744' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 16px 32px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      background: var(--color-navy);
+      color: var(--color-gold);
+      border: 2px solid var(--color-navy);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover {
+      background: var(--color-gold);
+      color: var(--color-navy);
+      border-color: var(--color-gold);
+      transform: translateY(-2px);
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    .form-success.show {
+      display: block;
+    }
+
+    .form-success .check {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .form-success p {
+      font-family: var(--font-sub);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--color-navy);
+      line-height: 1.6;
+    }
+
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+      justify-content: center;
+    }
+
+    .trust-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-navy);
+      border: 1.5px solid var(--color-gold);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-weight: 500;
+    }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+    footer {
+      background: #111827;
+      padding: 80px 0 0;
+      color: rgba(245,240,232,0.72);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1.4fr;
+      gap: 64px;
+      margin-bottom: 64px;
+    }
+
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--color-white);
+      margin-bottom: 8px;
+    }
+
+    .footer-tagline {
+      font-family: var(--font-sub);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: rgba(201,168,76,0.8);
+      margin-bottom: 24px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 14px;
+    }
+
+    .footer-social a {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(201,168,76,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: rgba(245,240,232,0.7);
+      transition: background var(--transition), border-color var(--transition), color var(--transition);
+    }
+
+    .footer-social a:hover {
+      background: var(--color-gold);
+      border-color: var(--color-gold);
+      color: var(--color-navy);
+    }
+
+    .footer-col-heading {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      font-size: 0.9rem;
+      color: rgba(245,240,232,0.65);
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--color-gold);
+    }
+
+    .footer-legal-text {
+      font-size: 0.85rem;
+      line-height: 1.8;
+      color: rgba(245,240,232,0.5);
+    }
+
+    .footer-rera {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: rgba(201,168,76,0.65);
+      margin-bottom: 12px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(201,168,76,0.2);
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .footer-bottom p {
+      font-family: var(--font-sub);
+      font-size: 0.88rem;
+      font-style: italic;
+      color: rgba(245,240,232,0.4);
+    }
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+    @media (max-width: 1280px) {
+      .proximity-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .story-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .story-pull-quote {
+        position: static;
+      }
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .whynow-cards {
+        grid-template-columns: 1fr;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      .plot-layout {
+        grid-template-columns: 1fr;
+      }
+      .plot-diagram {
+        margin-bottom: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+      .nav-hamburger {
+        display: flex;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      .proximity-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .tab-labels {
+        overflow-x: auto;
+      }
+      .tab-label {
+        padding: 12px 24px;
+        white-space: nowrap;
+      }
+      .lightbox-prev { left: -40px; }
+      .lightbox-next { right: -40px; }
+      .contact-form {
+        padding: 32px 24px;
+      }
+      #story, #location, #project, #plots, #gallery, #whynow, #contact {
+        padding: 80px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero-ctas {
+        flex-direction: column;
+        width: 100%;
+      }
+      .hero-ctas .btn {
+        width: 100%;
+        max-width: 320px;
+      }
+      .lightbox-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.4rem;
+      }
+      .lightbox-prev { left: -44px; }
+      .lightbox-next { right: -44px; }
+    }
+
+    @media (min-width: 1920px) {
+      .container {
+        max-width: 1440px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =====================================================
+       NAVIGATION
+  ===================================================== -->
+  <nav class="nav" id="mainNav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">
+        Jai Baba Builders
+        <span>Gurmukh Park · Kumhari</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#story" data-section="story">Story</a></li>
+        <li><a href="#location" data-section="location">Location</a></li>
+        <li><a href="#project" data-section="project">Project</a></li>
+        <li><a href="#gallery" data-section="gallery">Gallery</a></li>
+        <li><a href="#contact" data-section="contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary nav-cta" style="display:none;" id="navDesktopCta">Book a Site Visit ▶</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Overlay -->
+  <div class="nav-mobile-overlay" id="mobileOverlay" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <a href="#story" class="mobile-link">Story</a>
+    <a href="#location" class="mobile-link">Location</a>
+    <a href="#project" class="mobile-link">Project</a>
+    <a href="#plots" class="mobile-link">Plots</a>
+    <a href="#gallery" class="mobile-link">Gallery</a>
+    <a href="#contact" class="mobile-link">Book a Site Visit</a>
+  </div>
+
+
+  <!-- =====================================================
+       SECTION 1 — HERO
+  ===================================================== -->
+  <section id="home" aria-label="Hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Gurmukh Park · Kumhari, Chhattisgarh</span>
+      <h1 class="hero-title" aria-label="Where Families Find Their Ground"></h1>
+      <p class="hero-sub">Gurmukh Park — A plotted community in the heart of Kumhari, near Kaivalya Dham.</p>
+      <div class="hero-ctas">
+        <a href="#project" class="btn btn-primary">Explore Gurmukh Park</a>
+        <a href="#contact" class="btn btn-outline">Book a Site Visit</a>
+      </div>
+    </div>
+    <div class="scroll-indicator" aria-hidden="true">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       SECTION 2 — THE STORY
+  ===================================================== -->
+  <section id="story" aria-label="Our story">
+    <div class="container story-inner">
+      <div class="story-heading reveal">
+        <span class="section-label">The Foundation</span>
+        <h2>Built on Belief.</h2>
+        <span class="gold-rule"></span>
+      </div>
+
+      <div class="story-grid">
+        <div class="story-pull-quote reveal stagger-1">
+          <blockquote>
+            "Every family deserves a plot of earth they can truly call their own. Gurmukh Park is our promise to make that possible in Kumhari."
+          </blockquote>
+          <cite>— Jai Baba Builders</cite>
+        </div>
+        <div class="story-body reveal stagger-2">
+          <p>Kumhari sits at a rare intersection — close enough to Raipur and Durg to offer every city convenience, yet far enough to offer something increasingly rare: peace. When Jai Baba Builders looked for the right location for our first project, Kumhari chose us as much as we chose it.</p>
+          <p>Gurmukh Park is not just a plotted development. It is a carefully planned community — 8 acres of land thoughtfully laid out with wide internal roads, green spaces, and proximity to the sacred surroundings of Kaivalya Dham. We wanted the neighbourhood itself to feel like a blessing.</p>
+          <p>As first-time developers, we bring something established builders often lose — the hunger to prove ourselves on every square foot. Your trust is our first project. We will not waste it.</p>
+        </div>
+      </div>
+
+      <div class="stats-bar reveal stagger-3" aria-label="Project statistics">
+        <div class="stat-item">
+          <div class="stat-number" data-target="208" aria-label="208 Plots">0</div>
+          <div class="stat-label">Plots</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="8" aria-label="8 Acres">0</div>
+          <div class="stat-label">Acres</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="1" aria-label="1 Vision">0</div>
+          <div class="stat-label">Vision</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="0" aria-label="0 Compromises">0</div>
+          <div class="stat-label">Compromises</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       SECTION 3 — LOCATION
+  ===================================================== -->
+  <section id="location" aria-label="Location">
+    <div class="container">
+      <div class="location-hero-img reveal">
+        <img
+          src="https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=1280&q=85&auto=format&fit=crop"
+          alt="Aerial landscape of Chhattisgarh highway corridor"
+          loading="lazy"
+        />
+        <div class="location-heading-overlay">
+          <h2>Kumhari.<br/>Where Raipur Breathes.</h2>
+        </div>
+      </div>
+
+      <div class="location-body reveal">
+        <span class="section-label">The Address</span>
+        <p>Gurmukh Park sits on Patan Road, Kumhari — a corridor that connects the energy of two growing cities while preserving the quiet of open land. Every essential within reach. Every distraction kept at a comfortable distance.</p>
+      </div>
+
+      <div class="proximity-grid" aria-label="Nearby landmarks">
+        <div class="proximity-card reveal stagger-1">
+          <div class="proximity-icon" aria-hidden="true">🛕</div>
+          <div class="proximity-name">Kaivalya Dham Jain Temple</div>
+          <div class="proximity-dist">0.5 km</div>
+        </div>
+        <div class="proximity-card reveal stagger-2">
+          <div class="proximity-icon" aria-hidden="true">🏥</div>
+          <div class="proximity-name">AIIMS Raipur</div>
+          <div class="proximity-dist">6 km</div>
+        </div>
+        <div class="proximity-card reveal stagger-3">
+          <div class="proximity-icon" aria-hidden="true">🛣️</div>
+          <div class="proximity-name">NH-53 National Highway</div>
+          <div class="proximity-dist">1 km</div>
+        </div>
+        <div class="proximity-card reveal stagger-4">
+          <div class="proximity-icon" aria-hidden="true">🏫</div>
+          <div class="proximity-name">Schools &amp; Colleges</div>
+          <div class="proximity-dist">2 km</div>
+        </div>
+        <div class="proximity-card reveal stagger-5">
+          <div class="proximity-icon" aria-hidden="true">🏦</div>
+          <div class="proximity-name">Banks &amp; Commercial Markets</div>
+          <div class="proximity-dist">1.5 km</div>
+        </div>
+        <div class="proximity-card reveal stagger-6">
+          <div class="proximity-icon" aria-hidden="true">✈️</div>
+          <div class="proximity-name">Swami Vivekananda Airport</div>
+          <div class="proximity-dist">18 km</div>
+        </div>
+      </div>
+
+      <p class="location-closing reveal">
+        "Between the energy of two cities — find the calm of one perfect address."
+      </p>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       SECTION 4 — THE PROJECT
+  ===================================================== -->
+  <section id="project" aria-label="The project">
+    <div class="container" style="padding-bottom: 0;">
+      <div class="project-header reveal">
+        <span class="section-label">The Development</span>
+        <h2>Gurmukh Park — Crafted With Intention.</h2>
+        <span class="gold-rule"></span>
+      </div>
+      <div class="project-intro reveal stagger-1">
+        <p>A plotted development is the purest form of real estate — your land, your vision, your legacy. Gurmukh Park offers freehold residential plots across a range of sizes, in a gated, Vastu-aligned layout designed for the families of tomorrow.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card reveal stagger-1">
+          <div class="feature-icon" aria-hidden="true">🌿</div>
+          <h3 class="feature-title">Nature First</h3>
+          <p class="feature-desc">Green belts, tree-lined internal roads, and open landscaped zones planned into the layout — not added as an afterthought.</p>
+        </div>
+        <div class="feature-card reveal stagger-2">
+          <div class="feature-icon" aria-hidden="true">🏛️</div>
+          <h3 class="feature-title">Solid Infrastructure</h3>
+          <p class="feature-desc">Wide, paved internal roads. Underground utilities. Planned drainage. Built to last decades, not just to sell.</p>
+        </div>
+        <div class="feature-card reveal stagger-3">
+          <div class="feature-icon" aria-hidden="true">⛩️</div>
+          <h3 class="feature-title">Spiritual Proximity</h3>
+          <p class="feature-desc">Adjacent to Kaivalya Dham — one of Chhattisgarh's most respected Jain pilgrimage sites. An address that carries quiet grace.</p>
+        </div>
+        <div class="feature-card reveal stagger-4">
+          <div class="feature-icon" aria-hidden="true">🔐</div>
+          <h3 class="feature-title">Gated &amp; Secure</h3>
+          <p class="feature-desc">Controlled entry, boundary walls, and a planned resident community — because safety is not a feature, it is a foundation.</p>
+        </div>
+        <div class="feature-card reveal stagger-5">
+          <div class="feature-icon" aria-hidden="true">📋</div>
+          <h3 class="feature-title">Clear Legal Title</h3>
+          <p class="feature-desc">Freehold plots with clear, verified title. Full transparency in documentation from day one. RERA: [RERA REG. NO. — APPLIED / AWAITED]</p>
+        </div>
+        <div class="feature-card reveal stagger-6">
+          <div class="feature-icon" aria-hidden="true">🧭</div>
+          <h3 class="feature-title">Vastu-Aligned Layout</h3>
+          <p class="feature-desc">Plot orientations planned with Vastu principles — because for many families, a home begins with harmony.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marquee Ticker -->
+    <div class="marquee-strip" aria-hidden="true">
+      <div class="marquee-track">
+        <span>208 Plots</span><span>•</span>
+        <span>500 – 3800 sq.ft.</span><span>•</span>
+        <span>Freehold</span><span>•</span>
+        <span>Gated Community</span><span>•</span>
+        <span>Vastu-Aligned</span><span>•</span>
+        <span>Near NH-53</span><span>•</span>
+        <span>Enquire for Pricing</span><span>•</span>
+        <span>208 Plots</span><span>•</span>
+        <span>500 – 3800 sq.ft.</span><span>•</span>
+        <span>Freehold</span><span>•</span>
+        <span>Gated Community</span><span>•</span>
+        <span>Vastu-Aligned</span><span>•</span>
+        <span>Near NH-53</span><span>•</span>
+        <span>Enquire for Pricing</span><span>•</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       SECTION 5 — PLOT SIZES
+  ===================================================== -->
+  <section id="plots" aria-label="Plot sizes">
+    <div class="container">
+      <div class="plots-header reveal">
+        <span class="section-label">Choose Your Canvas</span>
+        <h2>Find Your Canvas.</h2>
+        <p>Every family has a different dream. Gurmukh Park has a plot for each one.</p>
+        <span class="gold-rule"></span>
+      </div>
+
+      <div class="tab-labels" role="tablist" aria-label="Plot size categories">
+        <button class="tab-label active" role="tab" aria-selected="true" aria-controls="tab-compact" data-tab="compact">
+          Compact <span style="font-family:var(--font-mono);font-size:0.72rem;opacity:0.7;margin-left:6px;">500–1000 sq.ft.</span>
+        </button>
+        <button class="tab-label" role="tab" aria-selected="false" aria-controls="tab-standard" data-tab="standard">
+          Standard <span style="font-family:var(--font-mono);font-size:0.72rem;opacity:0.7;margin-left:6px;">1000–2000 sq.ft.</span>
+        </button>
+        <button class="tab-label" role="tab" aria-selected="false" aria-controls="tab-premium" data-tab="premium">
+          Premium <span style="font-family:var(--font-mono);font-size:0.72rem;opacity:0.7;margin-left:6px;">2000–3800 sq.ft.</span>
+        </button>
+      </div>
+
+      <!-- Tab: Compact -->
+      <div class="tab-content active" id="tab-compact" role="tabpanel">
+        <div class="plot-layout">
+          <div class="plot-diagram">
+            <div class="plot-box-wrap">
+              <div class="plot-box compact">
+                500–1000<br/>sq.ft.
+                <span class="plot-dim-h">Width: 20–25 ft</span>
+                <span class="plot-dim-v">Depth: 25–40 ft</span>
+              </div>
+            </div>
+          </div>
+          <div class="plot-info">
+            <h3>Compact Plots</h3>
+            <div class="plot-range">500 – 1000 sq.ft.</div>
+            <p>Ideal for young couples or investors. Smart-sized plots that maximise value and build flexibility.</p>
+            <ul class="plot-highlights">
+              <li>Affordable entry point into Gurmukh Park</li>
+              <li>Low maintenance, easy to build on</li>
+              <li>High appreciation potential in this corridor</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary">Enquire About Compact Plots</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Standard -->
+      <div class="tab-content" id="tab-standard" role="tabpanel">
+        <div class="plot-layout">
+          <div class="plot-diagram">
+            <div class="plot-box-wrap">
+              <div class="plot-box standard">
+                1000–2000<br/>sq.ft.
+                <span class="plot-dim-h">Width: 30–40 ft</span>
+                <span class="plot-dim-v">Depth: 33–50 ft</span>
+              </div>
+            </div>
+          </div>
+          <div class="plot-info">
+            <h3>Standard Plots</h3>
+            <div class="plot-range">1000 – 2000 sq.ft.</div>
+            <p>The heart of Gurmukh Park. Spacious enough for a complete family home with garden, parking, and room to grow.</p>
+            <ul class="plot-highlights">
+              <li>Most popular size in the layout</li>
+              <li>Full home with garden and covered parking</li>
+              <li>Strong resale value in NH-53 corridor</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary">Enquire About Standard Plots</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Premium -->
+      <div class="tab-content" id="tab-premium" role="tabpanel">
+        <div class="plot-layout">
+          <div class="plot-diagram">
+            <div class="plot-box-wrap">
+              <div class="plot-box premium">
+                2000–3800<br/>sq.ft.
+                <span class="plot-dim-h">Width: 50–60 ft</span>
+                <span class="plot-dim-v">Depth: 50–65 ft</span>
+              </div>
+            </div>
+          </div>
+          <div class="plot-info">
+            <h3>Premium Plots</h3>
+            <div class="plot-range">2000 – 3800 sq.ft.</div>
+            <p>For those who want space to breathe, dream, and build a legacy. Premium corner and boulevard plots.</p>
+            <ul class="plot-highlights">
+              <li>Corner &amp; wide-frontage options available</li>
+              <li>Ideal for duplex, villa, or statement home</li>
+              <li>The most coveted addresses in Gurmukh Park</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary">Enquire About Premium Plots</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       SECTION 6 — GALLERY
+  ===================================================== -->
+  <section id="gallery" aria-label="Project gallery">
+    <div class="container" style="position:relative;">
+      <div class="gallery-header reveal">
+        <span class="section-label">Visual Journey</span>
+        <h2>A Place Worth Seeing.</h2>
+        <p>Come visit us. Until then, let these images tell the story.</p>
+        <span class="gold-rule"></span>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item reveal stagger-1" data-index="0">
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80&auto=format&fit=crop" alt="Aerial view of lush green Indian landscape" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-view-icon">View ↗</span></div>
+        </div>
+        <div class="gallery-item reveal stagger-2" data-index="1">
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80&auto=format&fit=crop" alt="Gated residential community entrance" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-view-icon">View ↗</span></div>
+        </div>
+        <div class="gallery-item reveal stagger-3" data-index="2">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80&auto=format&fit=crop" alt="Tree-lined road in residential colony" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-view-icon">View ↗</span></div>
+        </div>
+        <div class="gallery-item reveal stagger-4" data-index="3">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80&auto=format&fit=crop" alt="Family on an open plot at sunset" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-view-icon">View ↗</span></div>
+        </div>
+        <div class="gallery-item reveal stagger-5" data-index="4">
+          <img src="https://images.unsplash.com/photo-1609619385002-f40f1df9b7eb?w=800&q=80&auto=format&fit=crop" alt="Jain temple exterior with serene surroundings" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-view-icon">View ↗</span></div>
+        </div>
+        <div class="gallery-item reveal stagger-6" data-index="5">
+          <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80&auto=format&fit=crop" alt="Wide road through new residential development" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-view-icon">View ↗</span></div>
+        </div>
+        <div class="gallery-item reveal stagger-1" data-index="6">
+          <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80&auto=format&fit=crop" alt="Lush forested area in Central India" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-view-icon">View ↗</span></div>
+        </div>
+        <div class="gallery-item reveal stagger-2" data-index="7">
+          <img src="https://images.unsplash.com/photo-1531971589569-0d9370cbe1e5?w=800&q=80&auto=format&fit=crop" alt="Happy family at their new home" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-view-icon">View ↗</span></div>
+        </div>
+      </div>
+
+      <p class="gallery-caption reveal">
+        Site photography updated as the project progresses. Book a site visit to see Gurmukh Park in person.
+      </p>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <div class="lightbox-img-wrap">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">✕</button>
+      <button class="lightbox-btn lightbox-prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+      <img id="lightboxImg" src="" alt="Gallery image" />
+      <button class="lightbox-btn lightbox-next" id="lightboxNext" aria-label="Next image">›</button>
+    </div>
+  </div>
+
+
+  <!-- =====================================================
+       SECTION 7 — WHY NOW
+  ===================================================== -->
+  <section id="whynow" aria-label="Why invest now">
+    <div class="container">
+      <div class="whynow-header reveal">
+        <span class="section-label">The Opportunity</span>
+        <h2>"The Window Is Open. But Not for Long."</h2>
+        <span class="gold-rule" style="background: var(--color-gold);"></span>
+      </div>
+
+      <div class="whynow-cards">
+        <div class="whynow-card reveal stagger-1">
+          <div class="whynow-card-num">01 / 03</div>
+          <h3>A Rising Corridor</h3>
+          <p>NH-53 is transforming land values across the Raipur–Durg belt. Properties in Kumhari have consistently appreciated year-on-year. Early buyers in emerging corridors always see the strongest returns.</p>
+        </div>
+        <div class="whynow-card reveal stagger-2">
+          <div class="whynow-card-num">02 / 03</div>
+          <h3>Limited Inventory</h3>
+          <p>208 plots across 8 acres. This is not a large township — it is a curated community. Once plots are registered, there are no second chances at founding-member prices.</p>
+        </div>
+        <div class="whynow-card reveal stagger-3">
+          <div class="whynow-card-num">03 / 03</div>
+          <h3>Be the First</h3>
+          <p>The families who build Gurmukh Park's first homes will define the neighbourhood's character for decades. There is something special about being first — and something irreversible about waiting too long.</p>
+        </div>
+      </div>
+
+      <div class="availability-block reveal">
+        <p class="availability-label">Plots Available Now</p>
+        <span class="availability-count" id="availCount">—</span>
+        <p class="availability-sub">Register your interest today</p>
+      </div>
+
+      <div class="whynow-cta reveal">
+        <a href="#contact" class="btn btn-gold">Reserve Your Interest — It's Free</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       SECTION 8 — CONTACT
+  ===================================================== -->
+  <section id="contact" aria-label="Contact us">
+    <div class="container" style="position:relative;">
+      <div class="contact-header reveal">
+        <span class="section-label">Get In Touch</span>
+        <h2>Let's Talk About Your Future Plot.</h2>
+        <p>Our team is available 7 days a week. Reach out — no pressure, just answers.</p>
+        <span class="gold-rule"></span>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Left: Info -->
+        <div class="contact-info reveal">
+          <h3>Jai Baba Builders</h3>
+          <p class="project-name">Gurmukh Park Sales Office</p>
+          <address>
+            Kumhari, Patan Road,<br/>
+            Near Kaivalya Dham,<br/>
+            Kumhari – Durg 490042,<br/>
+            Chhattisgarh
+          </address>
+          <ul class="contact-details">
+            <li><span class="icon" aria-hidden="true">📞</span> [PHONE NUMBER]</li>
+            <li><span class="icon" aria-hidden="true">📧</span> [EMAIL ADDRESS]</li>
+            <li><span class="icon" aria-hidden="true">🕐</span> Mon–Sun: 10:00 AM – 7:00 PM</li>
+          </ul>
+          <iframe
+            class="contact-map"
+            title="Gurmukh Park location map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14891.632!2d81.3936!3d21.2156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a28d8b53e4a4d9b%3A0x6b9f6c2c0e0b4b4!2sKumhari%2C%20Chhattisgarh!5e0!3m2!1sen!2sin!4v1699000000000!5m2!1sen!2sin"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="contact-form reveal stagger-2">
+          <form id="enquiryForm" novalidate>
+            <div class="form-row">
+              <label class="form-label" for="fname">Full Name <span class="req">*</span></label>
+              <input class="form-input" type="text" id="fname" name="fullName" placeholder="Your full name" required autocomplete="name" />
+              <span class="form-error-msg" id="fnameErr">Please enter your name.</span>
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="phone">Phone Number <span class="req">*</span></label>
+              <input class="form-input" type="tel" id="phone" name="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required autocomplete="tel" />
+              <span class="form-error-msg" id="phoneErr">Please enter a valid 10-digit number.</span>
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="email">Email Address</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" />
+              <span class="form-error-msg" id="emailErr">Please enter a valid email address.</span>
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="plotSize">Plot Size Interest</label>
+              <select class="form-select" id="plotSize" name="plotSize">
+                <option value="">— Select plot size —</option>
+                <option value="compact">Compact (500–1000 sq.ft.)</option>
+                <option value="standard">Standard (1000–2000 sq.ft.)</option>
+                <option value="premium">Premium (2000–3800 sq.ft.)</option>
+                <option value="notsure">Not Sure Yet</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="source">How did you hear about us?</label>
+              <select class="form-select" id="source" name="source">
+                <option value="">— Select source —</option>
+                <option value="friend">Friend / Family</option>
+                <option value="social">Social Media</option>
+                <option value="hoarding">Hoarding / Banner</option>
+                <option value="search">Online Search</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="message">Message</label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="Any questions, preferred plot size, timeline to buy..." rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send My Enquiry →</button>
+          </form>
+
+          <div class="form-success" id="formSuccess">
+            <div class="check" aria-hidden="true">✅</div>
+            <p>Thank you! Our team will call you within 24 hours to discuss Gurmukh Park.</p>
+          </div>
+
+          <div class="trust-badges" aria-label="Trust indicators">
+            <span class="trust-badge">✓ RERA Applied</span>
+            <span class="trust-badge">✓ Freehold Title</span>
+            <span class="trust-badge">✓ Clear Documentation</span>
+            <span class="trust-badge">✓ Vastu-Aligned</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       FOOTER
+  ===================================================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand -->
+        <div>
+          <div class="footer-brand-name">Jai Baba Builders</div>
+          <div class="footer-tagline">"Building Trust. Plot by Plot."</div>
+          <div class="footer-social" aria-label="Social media links">
+            <a href="[WHATSAPP LINK]" aria-label="WhatsApp" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <div class="footer-col-heading">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="#story">Our Story</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a href="#project">Gurmukh Park</a></li>
+            <li><a href="#plots">Plot Sizes</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Legal -->
+        <div>
+          <div class="footer-col-heading">Legal</div>
+          <p class="footer-rera">RERA Reg. No: [RERA REG. NO. — APPLIED / AWAITED]</p>
+          <p class="footer-legal-text">
+            &copy; 2025 Jai Baba Builders. All rights reserved.<br/><br/>
+            Disclaimer: This website is for informational purposes only. All details are indicative and subject to change. Please verify all information at the site office before making any purchase decision.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>Designed with care for the families of Kumhari.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ===================================================== -->
+  <script>
+    // -------------------------------------------------------
+    // HERO TITLE CHARACTER SPLIT
+    // -------------------------------------------------------
+    (function splitHeroTitle() {
+      const titleEl = document.querySelector('.hero-title');
+      const text = "Where Families Find Their Ground";
+      titleEl.setAttribute('aria-label', text);
+      // Wrap each word in a nowrap span so words never break mid-character
+      titleEl.innerHTML = text.split(' ').map(word =>
+        `<span class="word" aria-hidden="true">${
+          word.split('').map(ch => `<span class="char">${ch}</span>`).join('')
+        }</span>`
+      ).join('<span class="char word-space">&nbsp;</span>');
+    })();
+
+    // -------------------------------------------------------
+    // GSAP HERO ANIMATION (runs after GSAP loads)
+    // -------------------------------------------------------
+    function initGSAP() {
+      if (typeof gsap === 'undefined') {
+        setTimeout(initGSAP, 100);
+        return;
+      }
+      gsap.timeline()
+        .from('.nav', { opacity: 0, y: -20, duration: 0.6, ease: 'power2.out' })
+        .from('.hero-eyebrow', { opacity: 0, y: 20, duration: 0.5, ease: 'power2.out' }, '-=0.2')
+        .from('.hero-title .char', {
+          opacity: 0, y: 30, stagger: 0.02, duration: 0.6, ease: 'power2.out'
+        }, '-=0.2')
+        .from('.hero-sub', { opacity: 0, y: 20, duration: 0.5, ease: 'power2.out' }, '-=0.1')
+        .from('.hero-ctas', { opacity: 0, y: 20, duration: 0.5, ease: 'power2.out' }, '-=0.1')
+        .from('.scroll-indicator', { opacity: 0, duration: 0.4 }, '-=0.1');
+    }
+
+    window.addEventListener('load', initGSAP);
+
+    // -------------------------------------------------------
+    // NAV: SCROLL EFFECT + ACTIVE SECTION
+    // -------------------------------------------------------
+    const mainNav = document.getElementById('mainNav');
+    const navDesktopCta = document.getElementById('navDesktopCta');
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+
+    // Show CTA on large screens
+    function checkNavCta() {
+      if (window.innerWidth >= 1024) {
+        navDesktopCta.style.display = 'inline-block';
+      } else {
+        navDesktopCta.style.display = 'none';
+      }
+    }
+    checkNavCta();
+    window.addEventListener('resize', checkNavCta);
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+
+          // Sticky nav
+          if (scrollY > 80) {
+            mainNav.classList.add('scrolled');
+          } else {
+            mainNav.classList.remove('scrolled');
+          }
+
+          // Active link tracking
+          let current = '';
+          sections.forEach(sec => {
+            const top = sec.offsetTop - 120;
+            if (scrollY >= top) current = sec.getAttribute('id');
+          });
+
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.dataset.section === current) {
+              link.classList.add('active');
+            }
+          });
+
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // -------------------------------------------------------
+    // HAMBURGER MENU
+    // -------------------------------------------------------
+    const hamburger = document.getElementById('navHamburger');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function openMenu() {
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      mobileOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      // Stagger link animations
+      mobileLinks.forEach((link, i) => {
+        link.style.animationDelay = `${0.1 + i * 0.08}s`;
+        link.classList.remove('mobile-animate');
+        void link.offsetWidth; // force reflow
+        link.classList.add('mobile-animate');
+      });
+    }
+
+    function closeMenu() {
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () => {
+      if (mobileOverlay.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mobileOverlay.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+
+    // -------------------------------------------------------
+    // INTERSECTION OBSERVER — REVEAL + COUNTERS
+    // -------------------------------------------------------
+    function animateCounter(el, target, duration) {
+      duration = duration || 2000;
+      if (target === 0) { el.textContent = '0'; return; }
+      let start = null;
+      function step(timestamp) {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // ease out cubic
+        el.textContent = Math.floor(eased * target);
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target;
+      }
+      requestAnimationFrame(step);
+    }
+
+    // Counters have not been triggered yet
+    const counterEls = document.querySelectorAll('.stat-number[data-target]');
+    const counterTriggered = new Set();
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !counterTriggered.has(entry.target)) {
+          counterTriggered.add(entry.target);
+          const target = parseInt(entry.target.dataset.target, 10);
+          animateCounter(entry.target, target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    counterEls.forEach(el => counterObserver.observe(el));
+
+    // -------------------------------------------------------
+    // AVAILABILITY COUNTER (Why Now section)
+    // -------------------------------------------------------
+    const availCount = document.getElementById('availCount');
+    if (availCount) {
+      const startNum = Math.floor(Math.random() * 26) + 160; // 160–185
+      let current = startNum;
+      let displayed = false;
+
+      const availObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !displayed) {
+            displayed = true;
+            animateCounter(availCount, current);
+
+            // Slow decrement every 8–15 seconds
+            function slowDecrement() {
+              if (current > 145) {
+                const delay = 8000 + Math.random() * 7000;
+                setTimeout(() => {
+                  current--;
+                  availCount.textContent = current;
+                  slowDecrement();
+                }, delay);
+              }
+            }
+            setTimeout(slowDecrement, 3000);
+          }
+        });
+      }, { threshold: 0.4 });
+
+      availObserver.observe(availCount);
+    }
+
+    // -------------------------------------------------------
+    // TAB SWITCHER — PLOT SIZES
+    // -------------------------------------------------------
+    const tabLabels = document.querySelectorAll('.tab-label');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabLabels.forEach(label => {
+      label.addEventListener('click', () => {
+        const target = label.dataset.tab;
+
+        tabLabels.forEach(l => {
+          l.classList.remove('active');
+          l.setAttribute('aria-selected', 'false');
+        });
+        label.classList.add('active');
+        label.setAttribute('aria-selected', 'true');
+
+        tabContents.forEach(content => {
+          content.classList.remove('active', 'visible');
+        });
+
+        const targetContent = document.getElementById('tab-' + target);
+        if (targetContent) {
+          targetContent.classList.add('active');
+          // Trigger transition
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              targetContent.classList.add('visible');
+            });
+          });
+        }
+      });
+    });
+
+    // Trigger initial tab visible state
+    requestAnimationFrame(() => {
+      const activeTab = document.querySelector('.tab-content.active');
+      if (activeTab) {
+        requestAnimationFrame(() => activeTab.classList.add('visible'));
+      }
+    });
+
+    // -------------------------------------------------------
+    // GALLERY LIGHTBOX
+    // -------------------------------------------------------
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+
+    // Gather image sources
+    const galleryImages = Array.from(galleryItems).map(item => ({
+      src: item.querySelector('img').src,
+      alt: item.querySelector('img').alt
+    }));
+
+    let currentLightboxIndex = 0;
+
+    function openLightbox(index) {
+      currentLightboxIndex = index;
+      lightboxImg.src = galleryImages[index].src;
+      lightboxImg.alt = galleryImages[index].alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      lightboxClose.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function showPrev() {
+      currentLightboxIndex = (currentLightboxIndex - 1 + galleryImages.length) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentLightboxIndex].src;
+      lightboxImg.alt = galleryImages[currentLightboxIndex].alt;
+    }
+
+    function showNext() {
+      currentLightboxIndex = (currentLightboxIndex + 1) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentLightboxIndex].src;
+      lightboxImg.alt = galleryImages[currentLightboxIndex].alt;
+    }
+
+    galleryItems.forEach((item, i) => {
+      item.addEventListener('click', () => openLightbox(i));
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') openLightbox(i);
+      });
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('role', 'button');
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', showPrev);
+    lightboxNext.addEventListener('click', showNext);
+
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    });
+
+    // -------------------------------------------------------
+    // CONTACT FORM — VALIDATION + SUCCESS STATE
+    // -------------------------------------------------------
+    const enquiryForm = document.getElementById('enquiryForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    function clearError(input, errId) {
+      input.classList.remove('error');
+      document.getElementById(errId).classList.remove('show');
+    }
+
+    function showError(input, errId) {
+      input.classList.add('error');
+      document.getElementById(errId).classList.add('show');
+    }
+
+    enquiryForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      let valid = true;
+
+      const fname = document.getElementById('fname');
+      const phone = document.getElementById('phone');
+      const email = document.getElementById('email');
+
+      // Clear all errors
+      clearError(fname, 'fnameErr');
+      clearError(phone, 'phoneErr');
+      clearError(email, 'emailErr');
+
+      // Validate name
+      if (!fname.value.trim()) {
+        showError(fname, 'fnameErr');
+        valid = false;
+      }
+
+      // Validate phone
+      const phoneVal = phone.value.replace(/\s/g, '');
+      if (!phoneVal || !/^[0-9]{10}$/.test(phoneVal)) {
+        showError(phone, 'phoneErr');
+        valid = false;
+      }
+
+      // Validate email (optional but must be valid if provided)
+      if (email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        showError(email, 'emailErr');
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      // Success state
+      enquiryForm.style.display = 'none';
+      formSuccess.classList.add('show');
+    });
+
+    // Live validation on blur
+    document.getElementById('fname').addEventListener('blur', function() {
+      if (!this.value.trim()) showError(this, 'fnameErr');
+      else clearError(this, 'fnameErr');
+    });
+
+    document.getElementById('phone').addEventListener('blur', function() {
+      const v = this.value.replace(/\s/g, '');
+      if (!v || !/^[0-9]{10}$/.test(v)) showError(this, 'phoneErr');
+      else clearError(this, 'phoneErr');
+    });
+
+    document.getElementById('email').addEventListener('blur', function() {
+      if (this.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value.trim())) {
+        showError(this, 'emailErr');
+      } else {
+        clearError(this, 'emailErr');
+      }
+    });
+
+    // -------------------------------------------------------
+    // SMOOTH SCROLL POLYFILL FOR SAFARI
+    // -------------------------------------------------------
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          const navHeight = mainNav.offsetHeight;
+          const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
